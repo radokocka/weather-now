@@ -36,13 +36,15 @@ const EmptyState = ({ onSuggestionClick }) => {
         </div>
         
         {/* Welcome Message */}
-        <h2 className="text-4xl font-poppins font-black text-white mb-4 drop-shadow-lg tracking-tight">
-          Welcome to WeatherNow
-        </h2>
-        
-        <p className={`text-xl ${isDarkMode ? 'text-white/70' : 'text-white/80'} mb-8 max-w-lg mx-auto leading-relaxed`}>
-          Get real-time weather information for any city around the world
-        </p>
+        <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-6 mb-8 border border-white/30">
+          <h2 className="text-5xl font-poppins font-black text-gray-900 mb-4 drop-shadow-lg tracking-tight">
+            Welcome to WeatherNow
+          </h2>
+          
+          <p className="text-xl text-gray-800 mb-4 max-w-lg mx-auto leading-relaxed font-medium">
+            Get real-time weather information for any city around the world
+          </p>
+        </div>
         
         {/* Search Instructions */}
         <div className={`${isDarkMode ? 'bg-white/5' : 'bg-white/10'} rounded-2xl p-6 mb-8 border ${isDarkMode ? 'border-white/10' : 'border-white/20'}`}>
@@ -51,8 +53,8 @@ const EmptyState = ({ onSuggestionClick }) => {
               <MagnifyingGlassIcon className="w-6 h-6 text-blue-300" />
             </div>
           </div>
-          <h3 className="text-lg font-semibold text-white mb-2">How to get started</h3>
-          <p className={`text-sm ${isDarkMode ? 'text-white/60' : 'text-white/70'} mb-4`}>
+          <h3 className="text-xl font-semibold text-white mb-3">How to get started</h3>
+          <p className="text-base text-white/90 mb-4 font-medium">
             Type any city name in the search bar above to see current weather and 5-day forecast
           </p>
           
@@ -60,15 +62,15 @@ const EmptyState = ({ onSuggestionClick }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
             <div className="flex items-center space-x-2">
               <span className="text-green-300">✓</span>
-              <span className={`${isDarkMode ? 'text-white/60' : 'text-white/70'}`}>Current conditions</span>
+              <span className="text-white/90 font-medium">Current conditions</span>
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-green-300">✓</span>
-              <span className={`${isDarkMode ? 'text-white/60' : 'text-white/70'}`}>5-day forecast</span>
+              <span className="text-white/90 font-medium">5-day forecast</span>
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-green-300">✓</span>
-              <span className={`${isDarkMode ? 'text-white/60' : 'text-white/70'}`}>Detailed metrics</span>
+              <span className="text-white/90 font-medium">Detailed metrics</span>
             </div>
           </div>
         </div>
@@ -77,7 +79,7 @@ const EmptyState = ({ onSuggestionClick }) => {
         <div className="mb-6">
           <div className="flex items-center justify-center mb-6">
             <GlobeAltIcon className="w-5 h-5 text-white/60 mr-2" />
-            <h3 className="text-lg font-semibold text-white">Popular cities</h3>
+            <h3 className="text-xl font-semibold text-white">Popular cities</h3>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -91,8 +93,8 @@ const EmptyState = ({ onSuggestionClick }) => {
                 <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
                   {suggestion.emoji}
                 </div>
-                <div className="text-white font-medium mb-1">{suggestion.city}</div>
-                <div className={`text-xs ${isDarkMode ? 'text-white/50' : 'text-white/60'}`}>
+                <div className="text-white font-semibold mb-1 text-base">{suggestion.city}</div>
+                <div className="text-sm text-white/80">
                   {suggestion.description}
                 </div>
               </button>
@@ -101,7 +103,7 @@ const EmptyState = ({ onSuggestionClick }) => {
         </div>
         
         {/* Bottom Tip */}
-        <p className={`text-sm ${isDarkMode ? 'text-white/50' : 'text-white/60'} italic`}>
+        <p className="text-base text-white/80 italic font-medium">
           💡 Tip: You can also search by country or region
         </p>
       </div>

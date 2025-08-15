@@ -52,25 +52,27 @@ const ErrorState = ({ error, onRetry }) => {
         </div>
         
         {/* Error Title */}
-        <h3 className="text-3xl font-poppins font-bold text-white mb-4 drop-shadow-lg">
-          {getErrorTitle(error)}
-        </h3>
-        
-        {/* Error Message */}
-        <p className={`text-lg ${isDarkMode ? 'text-red-200/80' : 'text-red-100/90'} mb-2 font-medium`}>
-          {error}
-        </p>
-        
-        {/* Error Suggestion */}
-        <p className={`text-base ${isDarkMode ? 'text-white/60' : 'text-white/70'} mb-8 max-w-md mx-auto leading-relaxed`}>
-          {getErrorSuggestion(error)}
-        </p>
+        <div className="bg-white/25 backdrop-blur-sm rounded-3xl p-6 mb-6 border border-white/40">
+          <h3 className="text-4xl font-poppins font-bold text-gray-900 mb-4 drop-shadow-lg">
+            {getErrorTitle(error)}
+          </h3>
+          
+          {/* Error Message */}
+          <p className="text-xl text-gray-800 mb-3 font-semibold">
+            {error}
+          </p>
+          
+          {/* Error Suggestion */}
+          <p className="text-lg text-gray-700 mb-4 max-w-md mx-auto leading-relaxed font-medium">
+            {getErrorSuggestion(error)}
+          </p>
+        </div>
         
         {/* Retry Button */}
         {onRetry && (
           <button
             onClick={onRetry}
-            className={`inline-flex items-center space-x-3 px-8 py-4 ${isDarkMode ? 'bg-red-600/30' : 'bg-red-500/30'} hover:${isDarkMode ? 'bg-red-600/40' : 'bg-red-500/40'} border ${isDarkMode ? 'border-red-400/40' : 'border-red-400/50'} rounded-2xl text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm group/button`}
+            className="inline-flex items-center space-x-3 px-8 py-4 bg-white/90 hover:bg-white border-2 border-red-500/50 hover:border-red-600 rounded-2xl text-gray-800 hover:text-gray-900 font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm group/button shadow-lg"
           >
             <ArrowPathIcon className="w-5 h-5 group-hover/button:rotate-180 transition-transform duration-500" />
             <span>Try Again</span>

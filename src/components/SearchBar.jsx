@@ -23,16 +23,16 @@ const SearchBar = ({ onSearch, loading }) => {
     <form onSubmit={handleSubmit} className="w-full">
       {/* White Rounded Search Container */}
       <div className={`
-        relative bg-white rounded-full shadow-lg border border-gray-100 transition-all duration-300 ease-out
-        ${isFocused ? 'shadow-xl scale-[1.02] ring-2 ring-blue-200' : 'hover:shadow-xl hover:scale-[1.01]'}
+        relative bg-white rounded-2xl shadow-2xl border-2 transition-all duration-300 ease-out
+        ${isFocused ? 'shadow-[0_25px_50px_-12px_rgba(59,130,246,0.5)] scale-[1.02] border-blue-500' : 'border-gray-300 hover:shadow-xl hover:scale-[1.01] hover:border-gray-400'}
         ${loading ? 'animate-pulse' : ''}
       `}>
         
         {/* Search Icon */}
-        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+        <div className="absolute left-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <MagnifyingGlassIcon className={`
-            w-5 h-5 transition-colors duration-300
-            ${isFocused ? 'text-blue-500' : 'text-gray-400'}
+            w-6 h-6 transition-colors duration-300
+            ${isFocused ? 'text-blue-600' : 'text-gray-500'}
           `} />
         </div>
 
@@ -43,15 +43,15 @@ const SearchBar = ({ onSearch, loading }) => {
           onChange={handleInputChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder="Search for a city..."
+          placeholder="🔍 Enter city name (e.g., London, New York, Bratislava)..."
           disabled={loading}
-          className="w-full pl-12 pr-4 py-3 bg-transparent text-gray-700 text-base placeholder-gray-400 focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-full font-medium"
+          className="w-full pl-16 pr-6 py-5 bg-white text-gray-800 text-lg placeholder-gray-600 focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-2xl font-medium shadow-inner"
         />
 
         {/* Loading Spinner */}
         {loading && (
-          <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-            <div className="animate-spin rounded-full h-5 w-5 border-2 border-gray-300 border-t-blue-500"></div>
+          <div className="absolute right-6 top-1/2 transform -translate-y-1/2">
+            <div className="animate-spin rounded-full h-6 w-6 border-3 border-gray-300 border-t-blue-500"></div>
           </div>
         )}
       </div>

@@ -69,7 +69,7 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
 
   return (
     <div>
-      <h3 className="text-base font-medium mb-4 text-gray-700">
+      <h3 className="text-lg font-bold mb-4 text-gray-900">
         5-Day Forecast
       </h3>
       
@@ -82,7 +82,7 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
               className="flex-shrink-0 w-20 p-3 text-center rounded-xl bg-gray-50 border border-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-md shadow-sm"
             >
               {/* Day Name */}
-              <div className="text-xs font-medium mb-2 text-gray-600">
+              <div className="text-sm font-semibold mb-2 text-gray-800">
                 {getDayName(day.date)}
               </div>
               
@@ -92,11 +92,11 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
               </div>
               
               {/* Min/Max Temperature */}
-              <div className="text-xs text-gray-600">
-                <div className="font-semibold mb-1">
+              <div className="text-sm text-gray-800">
+                <div className="font-bold mb-1">
                   {convertTemp(day.temp_max, temperatureUnit)}°
                 </div>
-                <div className="opacity-70">
+                <div className="font-medium text-gray-600">
                   {convertTemp(day.temp_min, temperatureUnit)}°
                 </div>
               </div>

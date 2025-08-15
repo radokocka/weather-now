@@ -4,43 +4,43 @@ const LoadingSkeleton = () => {
   const { isDarkMode } = useTheme()
 
   return (
-    <div className={`backdrop-blur-2xl ${isDarkMode ? 'bg-white/5' : 'bg-white/15'} rounded-[2rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] p-12 mb-8 border ${isDarkMode ? 'border-white/20' : 'border-white/30'} font-inter animate-pulse`}>
+    <div className="text-center animate-fade-in transition-all duration-500">
       
-      {/* Header Skeleton */}
-      <div className="text-center mb-10">
-        <div className={`h-12 ${isDarkMode ? 'bg-white/10' : 'bg-white/20'} rounded-2xl mx-auto mb-8 w-64 animate-shimmer`}></div>
-        
-        <div className="flex items-center justify-center mb-6 relative">
-          {/* Icon Skeleton */}
-          <div className={`w-28 h-28 ${isDarkMode ? 'bg-white/10' : 'bg-white/20'} rounded-full mr-8 animate-shimmer`}></div>
-          
-          {/* Temperature Skeleton */}
-          <div className="relative">
-            <div className={`h-20 w-48 ${isDarkMode ? 'bg-white/10' : 'bg-white/20'} rounded-2xl animate-shimmer`}></div>
-          </div>
-        </div>
-        
-        <div className={`h-6 ${isDarkMode ? 'bg-white/10' : 'bg-white/20'} rounded-xl mx-auto w-40 animate-shimmer`}></div>
-      </div>
+      {/* City Name Skeleton */}
+      <div className="h-8 bg-gray-300 rounded-2xl mx-auto mb-8 w-48 animate-pulse"></div>
+      
+      {/* Weather Icon Skeleton */}
+      <div className="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-6 animate-pulse animate-bounce"></div>
+      
+      {/* Temperature Skeleton */}
+      <div className="h-20 bg-gradient-to-r from-blue-300 to-red-300 rounded-2xl mx-auto mb-6 w-48 animate-pulse"></div>
+      
+      {/* Description Skeleton */}
+      <div className="h-6 bg-gray-300 rounded-xl mx-auto mb-8 w-32 animate-pulse"></div>
 
       {/* Cards Grid Skeleton */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+      <div className="grid grid-cols-2 gap-4 mb-8">
         {[...Array(4)].map((_, index) => (
           <div 
             key={index}
-            className={`backdrop-blur-xl ${isDarkMode ? 'bg-white/10' : 'bg-white/20'} rounded-3xl p-8 text-center border ${isDarkMode ? 'border-white/15' : 'border-white/30'} animate-pulse`}
+            className="bg-gray-100 rounded-xl p-4 border border-gray-200 animate-pulse"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             {/* Icon Skeleton */}
-            <div className={`w-12 h-12 ${isDarkMode ? 'bg-white/15' : 'bg-white/25'} rounded-full mx-auto mb-4 animate-shimmer`}></div>
+            <div className="w-8 h-8 bg-gray-300 rounded-full mx-auto mb-2 animate-pulse"></div>
             
             {/* Label Skeleton */}
-            <div className={`h-3 ${isDarkMode ? 'bg-white/15' : 'bg-white/25'} rounded-lg mx-auto mb-3 w-16 animate-shimmer`}></div>
+            <div className="h-3 bg-gray-300 rounded mx-auto mb-2 w-16 animate-pulse"></div>
             
             {/* Value Skeleton */}
-            <div className={`h-8 ${isDarkMode ? 'bg-white/15' : 'bg-white/25'} rounded-xl mx-auto w-20 animate-shimmer`}></div>
+            <div className="h-6 bg-gray-300 rounded-lg mx-auto w-12 animate-pulse"></div>
           </div>
         ))}
+      </div>
+      
+      {/* Loading Text */}
+      <div className="text-gray-600 text-lg font-medium animate-pulse">
+        🌦️ Fetching weather data...
       </div>
     </div>
   )

@@ -53,15 +53,15 @@ function WeatherApp() {
       <TemperatureToggle onUnitChange={setTemperatureUnit} />
       
       {/* Main Welcome Card */}
-      <div className="w-full max-w-md mx-auto">
-        <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8">
+      <div className="w-full max-w-lg mx-auto">
+        <div className="bg-white backdrop-blur-xl rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-16 border border-white/20">
           
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">
+            <h1 className="text-4xl font-bold text-gray-900 mb-3">
               WeatherNow
             </h1>
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-700 text-base">
               Beautiful weather insights
             </p>
           </div>
@@ -72,7 +72,7 @@ function WeatherApp() {
           </div>
           
           {/* Content Area */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-h-[400px] flex flex-col justify-center">
             {error && (
               <ErrorState 
                 error={error} 
@@ -83,14 +83,20 @@ function WeatherApp() {
               />
             )}
             
-            {loading && <LoadingSkeleton />}
+            {loading && (
+              <div className="animate-fade-in transition-opacity duration-500">
+                <LoadingSkeleton />
+              </div>
+            )}
             
             {!weatherData && !loading && !error && (
-              <EmptyState onSuggestionClick={handleSearch} />
+              <div className="animate-fade-in-up transition-all duration-700 ease-out">
+                <EmptyState onSuggestionClick={handleSearch} />
+              </div>
             )}
             
             {weatherData && !loading && (
-              <div className="animate-fade-in-up">
+              <div className="animate-fade-in-up transition-all duration-1000 ease-out transform">
                 <CurrentWeather 
                   weather={weatherData} 
                   forecast={forecastData}
