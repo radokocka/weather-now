@@ -19,6 +19,76 @@ function WeatherApp() {
   const [error, setError] = useState('')
   const [temperatureUnit, setTemperatureUnit] = useState('C')
 
+  // Get weather background class based on current weather
+  const getWeatherBackground = () => {
+    if (!weatherData) return 'animated-gradient-bg'
+    
+    const condition = weatherData.weather?.[0]?.main?.toLowerCase()
+    const description = weatherData.weather?.[0]?.description?.toLowerCase()
+    const isNight = weatherData.weather?.[0]?.icon?.includes('n')
+
+    if (condition === 'clear') {
+      return isNight ? 'clear-night-bg' : 'sunny-bg'
+    } else if (condition === 'clouds') {
+      return 'cloudy-bg'
+    } else if (condition === 'rain' || condition === 'drizzle' || condition === 'thunderstorm') {
+      return 'rainy-bg'
+    } else if (condition === 'snow') {
+      return 'snow-bg'
+    }
+    
+    return 'animated-gradient-bg'
+  }
+
+  // Get weather effects based on current weather
+  const getWeatherEffects = () => {
+    if (!weatherData) return null
+    
+    const condition = weatherData.weather?.[0]?.main?.toLowerCase()
+    const isNight = weatherData.weather?.[0]?.icon?.includes('n')
+
+    if (condition === 'clear' && !isNight) {
+      return (
+        <div className="sun-rays">
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+        </div>
+      )
+    } else if (condition === 'clear' && isNight) {
+      return (
+        <div className="stars-container">
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="star">✦</div>
+          ))}
+        </div>
+      )
+    } else if (condition === 'rain' || condition === 'drizzle' || condition === 'thunderstorm') {
+      return (
+        <div className="rain-container">
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="rain-drop"></div>
+          ))}
+        </div>
+      )
+    } else if (condition === 'snow') {
+      return (
+        <div className="snow-container">
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="snowflake">❄</div>
+          ))}
+        </div>
+      )
+    }
+    
+    return null
+  }
+
   const handleSearch = async (searchCity) => {
     if (!searchCity.trim()) return
 
@@ -44,7 +114,22 @@ function WeatherApp() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center p-6">
+    <div className={`min-h-screen weather-bg ${getWeatherBackground()} flex items-center justify-center p-6`}>
+      
+      {/* Weather Effects */}
+      {getWeatherEffects()}
+      
+      {/* Animated Clouds - only show for cloudy/default weather */}
+      {(!weatherData || weatherData.weather?.[0]?.main?.toLowerCase() === 'clouds' || !weatherData.weather) && (
+        <>
+          <div className="cloud cloud-1"></div>
+          <div className="cloud cloud-2"></div>
+          <div className="cloud cloud-3"></div>
+          <div className="cloud cloud-4"></div>
+          <div className="cloud cloud-5"></div>
+          <div className="cloud cloud-6"></div>
+        </>
+      )}
       
       {/* Theme Toggle */}
       <ThemeToggle />

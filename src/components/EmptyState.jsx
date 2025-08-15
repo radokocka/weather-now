@@ -61,41 +61,55 @@ const EmptyState = ({ onSuggestionClick }) => {
           {/* Feature List */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
             <div className="flex items-center space-x-2">
-              <span className="text-green-300">✓</span>
+              <span className="text-blue-300">🌡️</span>
               <span className="text-white/90 font-medium">Current conditions</span>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-green-300">✓</span>
+              <span className="text-blue-300">📅</span>
               <span className="text-white/90 font-medium">5-day forecast</span>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-green-300">✓</span>
+              <span className="text-blue-300">📊</span>
               <span className="text-white/90 font-medium">Detailed metrics</span>
             </div>
           </div>
         </div>
         
         {/* Popular Cities */}
-        <div className="mb-6">
-          <div className="flex items-center justify-center mb-6">
-            <GlobeAltIcon className="w-5 h-5 text-white/60 mr-2" />
-            <h3 className="text-xl font-semibold text-white">Popular cities</h3>
+        <div className="mb-8">
+          <div className="flex items-center justify-center mb-8">
+            <div className={`p-2 ${isDarkMode ? 'bg-blue-500/20' : 'bg-blue-500/30'} rounded-full mr-3`}>
+              <GlobeAltIcon className="w-5 h-5 text-blue-300" />
+            </div>
+            <h3 className="text-2xl font-bold text-white">Popular Cities</h3>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {suggestions.map((suggestion, index) => (
               <button
                 key={suggestion.city}
                 onClick={() => onSuggestionClick?.(suggestion.city)}
-                className={`group p-4 ${isDarkMode ? 'bg-white/5 hover:bg-white/10' : 'bg-white/10 hover:bg-white/20'} rounded-2xl border ${isDarkMode ? 'border-white/10 hover:border-white/20' : 'border-white/20 hover:border-white/30'} transition-all duration-300 hover:scale-105 active:scale-95`}
+                className={`group relative p-6 ${isDarkMode ? 'bg-white/5 hover:bg-white/15' : 'bg-white/10 hover:bg-white/25'} rounded-3xl border ${isDarkMode ? 'border-white/10 hover:border-blue-300/30' : 'border-white/20 hover:border-blue-300/50'} transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/10 active:scale-95 cursor-pointer backdrop-blur-sm`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
-                  {suggestion.emoji}
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-400/0 via-blue-300/0 to-purple-400/0 group-hover:from-blue-400/10 group-hover:via-blue-300/5 group-hover:to-purple-400/10 transition-all duration-300"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-4xl mb-3 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 filter group-hover:drop-shadow-lg">
+                    {suggestion.emoji}
+                  </div>
+                  <div className="text-white font-bold mb-2 text-lg group-hover:text-blue-200 transition-colors duration-300">
+                    {suggestion.city}
+                  </div>
+                  <div className="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300 font-medium">
+                    {suggestion.description}
+                  </div>
                 </div>
-                <div className="text-white font-semibold mb-1 text-base">{suggestion.city}</div>
-                <div className="text-sm text-white/80">
-                  {suggestion.description}
+
+                {/* Click indicator */}
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="text-blue-300 text-xs">→</div>
                 </div>
               </button>
             ))}
