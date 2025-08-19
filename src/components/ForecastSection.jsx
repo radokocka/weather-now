@@ -71,18 +71,18 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C', onDayClick, selected
 
   return (
     <div>
-      <h3 className={`text-base sm:text-lg font-bold mb-3 sm:mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      <h3 className={`text-sm sm:text-base lg:text-lg font-bold mb-2 sm:mb-3 lg:mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         7-Day Forecast
       </h3>
       
       {/* Horizontal Scrollable Container */}
       <div className="overflow-x-auto scrollbar-hide">
-        <div className="flex space-x-2 sm:space-x-3 lg:space-x-4 pb-2 min-w-max">
+        <div className="flex space-x-1.5 sm:space-x-2 lg:space-x-3 pb-2 min-w-max">
           {dailyForecast.map((day, index) => (
             <div 
               key={index}
               onClick={() => onDayClick && onDayClick(day)}
-              className={`flex-shrink-0 w-16 sm:w-18 lg:w-20 p-2 sm:p-3 text-center rounded-lg sm:rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-md shadow-sm cursor-pointer ${
+              className={`flex-shrink-0 w-14 sm:w-16 lg:w-18 xl:w-20 p-1.5 sm:p-2 lg:p-3 text-center rounded-md sm:rounded-lg lg:rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-md shadow-sm cursor-pointer ${
                 selectedDay && selectedDay.date.toDateString() === day.date.toDateString()
                   ? isDarkMode 
                     ? 'bg-blue-900 border-blue-500 border-2 text-white'
@@ -93,7 +93,7 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C', onDayClick, selected
               }`}
             >
               {/* Day Name */}
-              <div className={`text-xs sm:text-sm font-semibold mb-1 sm:mb-2 ${
+              <div className={`text-xs font-semibold mb-1 leading-tight ${
                 selectedDay && selectedDay.date.toDateString() === day.date.toDateString()
                   ? isDarkMode ? 'text-white' : 'text-gray-800'
                   : isDarkMode ? 'text-gray-200' : 'text-gray-800'
@@ -102,24 +102,24 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C', onDayClick, selected
               </div>
               
               {/* Weather Icon */}
-              <div className="mb-1 sm:mb-2 flex justify-center">
+              <div className="mb-1 flex justify-center">
                 <img 
                   src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
                   alt={day.weather.description}
-                  className="w-6 h-6 sm:w-8 sm:h-8 drop-shadow-sm"
+                  className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 drop-shadow-sm"
                 />
               </div>
               
               {/* Min/Max Temperature */}
-              <div className={`text-xs sm:text-sm ${
+              <div className={`text-xs ${
                 selectedDay && selectedDay.date.toDateString() === day.date.toDateString()
                   ? isDarkMode ? 'text-white' : 'text-gray-800'
                   : isDarkMode ? 'text-gray-200' : 'text-gray-800'
               }`}>
-                <div className="font-bold mb-0.5 sm:mb-1">
+                <div className="font-bold mb-0.5 leading-none">
                   {convertTemp(day.temp_max, temperatureUnit)}°
                 </div>
-                <div className={`font-medium ${
+                <div className={`font-medium leading-none ${
                   selectedDay && selectedDay.date.toDateString() === day.date.toDateString()
                     ? isDarkMode ? 'text-gray-300' : 'text-gray-600'
                     : isDarkMode ? 'text-gray-400' : 'text-gray-600'

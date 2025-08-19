@@ -131,7 +131,7 @@ function WeatherApp() {
   }
 
   return (
-    <div className={`min-h-screen weather-bg ${getWeatherBackground()} flex items-center justify-center p-4 md:p-6 ${isDarkMode ? 'dark' : ''}`}>
+    <div className={`min-h-screen weather-bg ${getWeatherBackground()} flex items-start justify-center p-2 sm:p-4 lg:p-6 pt-4 sm:pt-8 lg:items-center ${isDarkMode ? 'dark' : ''}`}>
       
       {/* Weather Effects */}
       {getWeatherEffects()}
@@ -159,13 +159,13 @@ function WeatherApp() {
       <TemperatureToggle onUnitChange={setTemperatureUnit} />
       
       {/* Main Welcome Card */}
-      <div className="w-full max-w-2xl mx-auto px-2 sm:px-4">
-        <div className={`${isDarkMode ? 'bg-gray-900 text-white border-gray-700' : 'bg-white text-gray-900 border-white/20'} backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-4 sm:p-6 md:p-8 lg:p-12 border`}>
+      <div className="w-full max-w-md sm:max-w-lg lg:max-w-2xl mx-auto px-1 sm:px-2 lg:px-4">
+        <div className={`${isDarkMode ? 'bg-gray-900/95 text-white border-gray-700' : 'bg-white/95 text-gray-900 border-white/30'} backdrop-blur-xl rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] sm:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-3 sm:p-4 md:p-6 lg:p-8 border`}>
           
           {/* Header */}
-          <div className="text-center mb-6 sm:mb-8">
+          <div className="text-center mb-4 sm:mb-6 lg:mb-8">
             <h1 
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 cursor-pointer transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
+              className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2 lg:mb-3 cursor-pointer transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
               onClick={() => {
                 setWeatherData(null)
                 setForecastData(null)
@@ -176,18 +176,18 @@ function WeatherApp() {
             >
               WeatherNow
             </h1>
-            <p className={`text-sm sm:text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <p className={`text-xs sm:text-sm lg:text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Beautiful weather insights
             </p>
           </div>
           
           {/* Search Section */}
-          <div className="mb-4 sm:mb-6">
+          <div className="mb-3 sm:mb-4 lg:mb-6">
             <SearchBar onSearch={handleSearch} loading={loading} isDarkMode={isDarkMode} />
           </div>
           
           {/* Content Area */}
-          <div className="space-y-4 sm:space-y-6 min-h-[300px] sm:min-h-[400px] flex flex-col justify-center">
+          <div className="space-y-3 sm:space-y-4 lg:space-y-6 min-h-[280px] sm:min-h-[320px] lg:min-h-[400px] flex flex-col justify-center">
             {error && (
               <ErrorState 
                 error={error} 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Test</title>
+    <script>
+        // Test if the page loads
+        window.addEventListener('load', () => {
+            console.log('✅ Page loaded successfully!');
+            
+            // Test GitHub Pages URL
+            fetch('https://radokocka.github.io/weather-now/')
+                .then(response => {
+                    console.log('📄 GitHub Pages response status:', response.status);
+                    console.log('📄 GitHub Pages response headers:', [...response.headers.entries()]);
+                    return response.text();
+                })
+                .then(html => {
+                    console.log('📄 GitHub Pages HTML length:', html.length);
+                    console.log('📄 Contains WeatherNow:', html.includes('WeatherNow'));
+                    console.log('📄 Contains React root:', html.includes('id="root"'));
+                    console.log('📄 Contains JS bundle:', html.includes('index-CYr3Cm_7.js'));
+                    
+                    // Show first 200 chars
+                    console.log('📄 HTML preview:', html.substring(0, 200));
+                })
+                .catch(error => {
+                    console.error('❌ Error testing GitHub Pages:', error);
+                });
+        });
+    </script>
+</head>
+<body>
+    <h1>Testing GitHub Pages Weather App</h1>
+    <p>Check the browser console for test results!</p>
+</body>
+</html>

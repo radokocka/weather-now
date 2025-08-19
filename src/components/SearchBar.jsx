@@ -23,16 +23,16 @@ const SearchBar = ({ onSearch, loading, isDarkMode = false }) => {
     <form onSubmit={handleSubmit} className="w-full">
       {/* Search Container */}
       <div className={`
-        relative rounded-2xl shadow-2xl border-2 transition-all duration-300 ease-out
+        relative rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl border-2 transition-all duration-300 ease-out
         ${isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'}
-        ${isFocused ? 'shadow-[0_25px_50px_-12px_rgba(59,130,246,0.5)] scale-[1.02] border-blue-500' : isDarkMode ? 'hover:shadow-xl hover:scale-[1.01] hover:border-gray-500' : 'hover:shadow-xl hover:scale-[1.01] hover:border-gray-400'}
+        ${isFocused ? 'shadow-[0_15px_35px_-8px_rgba(59,130,246,0.4)] sm:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.5)] scale-[1.01] sm:scale-[1.02] border-blue-500' : isDarkMode ? 'hover:shadow-lg hover:border-gray-500' : 'hover:shadow-lg hover:border-gray-400'}
         ${loading ? 'animate-pulse' : ''}
       `}>
         
         {/* Search Icon */}
         <div className="absolute left-3 sm:left-4 lg:left-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <MagnifyingGlassIcon className={`
-            w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300
+            w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors duration-300
             ${isFocused ? 'text-blue-600' : isDarkMode ? 'text-gray-400' : 'text-gray-500'}
           `} />
         </div>
@@ -46,7 +46,7 @@ const SearchBar = ({ onSearch, loading, isDarkMode = false }) => {
           onBlur={handleBlur}
           placeholder="🔍 Enter city name..."
           disabled={loading}
-          className={`w-full pl-10 sm:pl-12 lg:pl-16 pr-4 sm:pr-6 py-3 sm:py-4 lg:py-5 text-base sm:text-lg focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-2xl font-medium shadow-inner ${
+          className={`w-full pl-9 sm:pl-11 lg:pl-16 pr-3 sm:pr-4 lg:pr-6 py-2.5 sm:py-3 lg:py-4 text-sm sm:text-base lg:text-lg focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-xl sm:rounded-2xl font-medium shadow-inner ${
             isDarkMode 
               ? 'bg-gray-800 text-gray-100 placeholder-gray-400' 
               : 'bg-white text-gray-800 placeholder-gray-600'
