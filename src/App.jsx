@@ -159,13 +159,13 @@ function WeatherApp() {
       <TemperatureToggle onUnitChange={setTemperatureUnit} />
       
       {/* Main Welcome Card */}
-      <div className="w-full max-w-2xl mx-auto px-4">
-        <div className={`${isDarkMode ? 'bg-gray-900 text-white border-gray-700' : 'bg-white text-gray-900 border-white/20'} backdrop-blur-xl rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-8 md:p-12 lg:p-16 border`}>
+      <div className="w-full max-w-2xl mx-auto px-2 sm:px-4">
+        <div className={`${isDarkMode ? 'bg-gray-900 text-white border-gray-700' : 'bg-white text-gray-900 border-white/20'} backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-4 sm:p-6 md:p-8 lg:p-12 border`}>
           
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 sm:mb-8">
             <h1 
-              className={`text-4xl font-bold mb-3 cursor-pointer transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
+              className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 cursor-pointer transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
               onClick={() => {
                 setWeatherData(null)
                 setForecastData(null)
@@ -176,18 +176,18 @@ function WeatherApp() {
             >
               WeatherNow
             </h1>
-            <p className={`text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <p className={`text-sm sm:text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Beautiful weather insights
             </p>
           </div>
           
           {/* Search Section */}
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <SearchBar onSearch={handleSearch} loading={loading} isDarkMode={isDarkMode} />
           </div>
           
           {/* Content Area */}
-          <div className="space-y-6 min-h-[400px] flex flex-col justify-center">
+          <div className="space-y-4 sm:space-y-6 min-h-[300px] sm:min-h-[400px] flex flex-col justify-center">
             {error && (
               <ErrorState 
                 error={error} 

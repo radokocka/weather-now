@@ -30,9 +30,9 @@ const SearchBar = ({ onSearch, loading, isDarkMode = false }) => {
       `}>
         
         {/* Search Icon */}
-        <div className="absolute left-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
+        <div className="absolute left-3 sm:left-4 lg:left-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <MagnifyingGlassIcon className={`
-            w-6 h-6 transition-colors duration-300
+            w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300
             ${isFocused ? 'text-blue-600' : isDarkMode ? 'text-gray-400' : 'text-gray-500'}
           `} />
         </div>
@@ -46,7 +46,7 @@ const SearchBar = ({ onSearch, loading, isDarkMode = false }) => {
           onBlur={handleBlur}
           placeholder="🔍 Enter city name..."
           disabled={loading}
-          className={`w-full pl-16 pr-6 py-5 text-lg focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-2xl font-medium shadow-inner ${
+          className={`w-full pl-10 sm:pl-12 lg:pl-16 pr-4 sm:pr-6 py-3 sm:py-4 lg:py-5 text-base sm:text-lg focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-2xl font-medium shadow-inner ${
             isDarkMode 
               ? 'bg-gray-800 text-gray-100 placeholder-gray-400' 
               : 'bg-white text-gray-800 placeholder-gray-600'
@@ -55,8 +55,8 @@ const SearchBar = ({ onSearch, loading, isDarkMode = false }) => {
 
         {/* Loading Spinner */}
         {loading && (
-          <div className="absolute right-6 top-1/2 transform -translate-y-1/2">
-            <div className="animate-spin rounded-full h-6 w-6 border-3 border-gray-300 border-t-blue-500"></div>
+          <div className="absolute right-3 sm:right-4 lg:right-6 top-1/2 transform -translate-y-1/2">
+            <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-2 sm:border-3 border-gray-300 border-t-blue-500"></div>
           </div>
         )}
       </div>

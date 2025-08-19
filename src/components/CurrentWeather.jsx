@@ -143,7 +143,7 @@ const CurrentWeather = ({ weather, forecast, temperatureUnit = 'C', isDarkMode: 
     <div className="text-center animate-fade-in-up transition-all duration-700 ease-out">
       
       {/* City Name */}
-      <h2 className={`text-3xl font-bold mb-4 animate-slide-in ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      <h2 className={`text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 animate-slide-in ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         {name}
       </h2>
       
@@ -157,34 +157,34 @@ const CurrentWeather = ({ weather, forecast, temperatureUnit = 'C', isDarkMode: 
       </div>
       
       {/* Weather Icon */}
-      <div className="mb-6 animate-bounce">
+      <div className="mb-4 sm:mb-6 animate-bounce">
         <img 
           src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
           alt={description}
-          className="w-32 h-32 mx-auto drop-shadow-2xl transition-transform duration-500 hover:scale-110"
+          className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 mx-auto drop-shadow-2xl transition-transform duration-500 hover:scale-110"
         />
       </div>
 
       {/* Huge Temperature Display */}
-      <div className="mb-6">
-        <span className={`text-6xl font-black transition-all duration-700 ${getTemperatureColor(convertTemp(temp, temperatureUnit), temperatureUnit)}`}>
+      <div className="mb-4 sm:mb-6">
+        <span className={`text-4xl sm:text-5xl lg:text-6xl font-black transition-all duration-700 ${getTemperatureColor(convertTemp(temp, temperatureUnit), temperatureUnit)}`}>
           {convertTemp(temp, temperatureUnit)}°
         </span>
       </div>
       
       {/* Min/Max Temperature Display */}
-      <div className={`mb-6 backdrop-blur-sm rounded-2xl p-4 border ${isDarkMode ? 'bg-gray-800/90 border-gray-600' : 'bg-white/90 border-white/20'}`}>
-        <div className="flex items-center justify-center space-x-6">
+      <div className={`mb-4 sm:mb-6 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 border ${isDarkMode ? 'bg-gray-800/90 border-gray-600' : 'bg-white/90 border-white/20'}`}>
+        <div className="flex items-center justify-center space-x-4 sm:space-x-6">
           <div className="text-center">
-            <div className={`text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Daily High</div>
-            <div className={`text-2xl font-bold ${getTemperatureColor(convertTemp(temp_max, temperatureUnit), temperatureUnit)}`}>
+            <div className={`text-xs sm:text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Daily High</div>
+            <div className={`text-lg sm:text-xl lg:text-2xl font-bold ${getTemperatureColor(convertTemp(temp_max, temperatureUnit), temperatureUnit)}`}>
               {convertTemp(temp_max, temperatureUnit)}°
             </div>
           </div>
-          <div className={`w-px h-12 ${isDarkMode ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
+          <div className={`w-px h-8 sm:h-12 ${isDarkMode ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
           <div className="text-center">
-            <div className={`text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Daily Low</div>
-            <div className={`text-2xl font-bold ${getTemperatureColor(convertTemp(temp_min, temperatureUnit), temperatureUnit)}`}>
+            <div className={`text-xs sm:text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Daily Low</div>
+            <div className={`text-lg sm:text-xl lg:text-2xl font-bold ${getTemperatureColor(convertTemp(temp_min, temperatureUnit), temperatureUnit)}`}>
               {convertTemp(temp_min, temperatureUnit)}°
             </div>
           </div>
@@ -192,34 +192,34 @@ const CurrentWeather = ({ weather, forecast, temperatureUnit = 'C', isDarkMode: 
       </div>
       
       {/* Weather Condition */}
-      <p className={`text-2xl font-semibold mb-6 capitalize animate-fade-in ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+      <p className={`text-lg sm:text-xl lg:text-2xl font-semibold mb-4 sm:mb-6 capitalize animate-fade-in ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
         {description}
       </p>
       
       {/* Day/Night Weather */}
-      <div className={`mb-8 backdrop-blur-sm rounded-2xl p-6 border ${isDarkMode ? 'bg-gray-800/90 border-gray-600' : 'bg-white/90 border-white/20'}`}>
-        <h4 className={`text-lg font-bold mb-4 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Day & Night Weather</h4>
-        <div className="grid grid-cols-2 gap-4">
+      <div className={`mb-6 sm:mb-8 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border ${isDarkMode ? 'bg-gray-800/90 border-gray-600' : 'bg-white/90 border-white/20'}`}>
+        <h4 className={`text-base sm:text-lg font-bold mb-3 sm:mb-4 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Day & Night Weather</h4>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {/* Day Weather */}
-          <div className="text-center p-4 bg-yellow-50 rounded-xl border border-yellow-200">
-            <div className="text-3xl mb-2">☀️</div>
-            <div className="text-sm font-medium text-gray-600 mb-2">During Day</div>
-            <div className="text-lg font-bold text-gray-900 mb-1">
+          <div className="text-center p-3 sm:p-4 bg-yellow-50 rounded-lg sm:rounded-xl border border-yellow-200">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">☀️</div>
+            <div className="text-xs sm:text-sm font-medium text-gray-600 mb-1 sm:mb-2">During Day</div>
+            <div className="text-base sm:text-lg font-bold text-gray-900 mb-1">
               {convertTemp(temp_max, temperatureUnit)}°
             </div>
-            <div className="text-sm text-gray-700 capitalize">
+            <div className="text-xs sm:text-sm text-gray-700 capitalize">
               {icon.includes('d') ? description : 'clear'}
             </div>
           </div>
           
           {/* Night Weather */}
-          <div className="text-center p-4 bg-blue-50 rounded-xl border border-blue-200">
-            <div className="text-3xl mb-2">🌙</div>
-            <div className="text-sm font-medium text-gray-600 mb-2">At Night</div>
-            <div className="text-lg font-bold text-gray-900 mb-1">
+          <div className="text-center p-3 sm:p-4 bg-blue-50 rounded-lg sm:rounded-xl border border-blue-200">
+            <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">🌙</div>
+            <div className="text-xs sm:text-sm font-medium text-gray-600 mb-1 sm:mb-2">At Night</div>
+            <div className="text-base sm:text-lg font-bold text-gray-900 mb-1">
               {convertTemp(temp_min, temperatureUnit)}°
             </div>
-            <div className="text-sm text-gray-700 capitalize">
+            <div className="text-xs sm:text-sm text-gray-700 capitalize">
               {icon.includes('n') ? description : 'cooler'}
             </div>
           </div>
@@ -227,26 +227,26 @@ const CurrentWeather = ({ weather, forecast, temperatureUnit = 'C', isDarkMode: 
       </div>
       
       {/* Weather Details Grid */}
-      <div className="grid grid-cols-2 gap-4 mb-8 text-center animate-scale-in">
-        <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
-          <div className="text-2xl mb-1">🌡️</div>
-          <div className="text-sm font-medium text-gray-600">Feels like</div>
-          <div className="text-lg font-bold text-gray-900">{convertTemp(feels_like, temperatureUnit)}°</div>
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8 text-center animate-scale-in">
+        <div className="bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-100">
+          <div className="text-xl sm:text-2xl mb-1">🌡️</div>
+          <div className="text-xs sm:text-sm font-medium text-gray-600">Feels like</div>
+          <div className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">{convertTemp(feels_like, temperatureUnit)}°</div>
         </div>
-        <div className="bg-green-50 rounded-xl p-4 border border-green-100">
-          <div className="text-2xl mb-1">💧</div>
-          <div className="text-sm font-medium text-gray-600">Humidity</div>
-          <div className="text-lg font-bold text-gray-900">{humidity}%</div>
+        <div className="bg-green-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-100">
+          <div className="text-xl sm:text-2xl mb-1">💧</div>
+          <div className="text-xs sm:text-sm font-medium text-gray-600">Humidity</div>
+          <div className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">{humidity}%</div>
         </div>
-        <div className="bg-purple-50 rounded-xl p-4 border border-purple-100">
-          <div className="text-2xl mb-1">💨</div>
-          <div className="text-sm font-medium text-gray-600">Wind Speed</div>
-          <div className="text-lg font-bold text-gray-900">{speed ? `${Math.round(speed)} m/s` : 'N/A'}</div>
+        <div className="bg-purple-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-100">
+          <div className="text-xl sm:text-2xl mb-1">💨</div>
+          <div className="text-xs sm:text-sm font-medium text-gray-600">Wind Speed</div>
+          <div className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">{speed ? `${Math.round(speed)} m/s` : 'N/A'}</div>
         </div>
-        <div className="bg-orange-50 rounded-xl p-4 border border-orange-100">
-          <div className="text-2xl mb-1">📊</div>
-          <div className="text-sm font-medium text-gray-600">Range</div>
-          <div className="text-lg font-bold text-gray-900">
+        <div className="bg-orange-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-orange-100">
+          <div className="text-xl sm:text-2xl mb-1">📊</div>
+          <div className="text-xs sm:text-sm font-medium text-gray-600">Range</div>
+          <div className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">
             {convertTemp(temp_min, temperatureUnit)}° - {convertTemp(temp_max, temperatureUnit)}°
           </div>
         </div>
