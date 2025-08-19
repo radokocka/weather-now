@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
-const SearchBar = ({ onSearch, loading }) => {
+const SearchBar = ({ onSearch, loading, isDarkMode = false }) => {
   const [inputValue, setInputValue] = useState('')
   const [isFocused, setIsFocused] = useState(false)
 
@@ -21,10 +21,11 @@ const SearchBar = ({ onSearch, loading }) => {
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      {/* White Rounded Search Container */}
+      {/* Search Container */}
       <div className={`
-        relative bg-white rounded-2xl shadow-2xl border-2 transition-all duration-300 ease-out
-        ${isFocused ? 'shadow-[0_25px_50px_-12px_rgba(59,130,246,0.5)] scale-[1.02] border-blue-500' : 'border-gray-300 hover:shadow-xl hover:scale-[1.01] hover:border-gray-400'}
+        relative rounded-2xl shadow-2xl border-2 transition-all duration-300 ease-out
+        ${isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'}
+        ${isFocused ? 'shadow-[0_25px_50px_-12px_rgba(59,130,246,0.5)] scale-[1.02] border-blue-500' : isDarkMode ? 'hover:shadow-xl hover:scale-[1.01] hover:border-gray-500' : 'hover:shadow-xl hover:scale-[1.01] hover:border-gray-400'}
         ${loading ? 'animate-pulse' : ''}
       `}>
         
@@ -32,7 +33,7 @@ const SearchBar = ({ onSearch, loading }) => {
         <div className="absolute left-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <MagnifyingGlassIcon className={`
             w-6 h-6 transition-colors duration-300
-            ${isFocused ? 'text-blue-600' : 'text-gray-500'}
+            ${isFocused ? 'text-blue-600' : isDarkMode ? 'text-gray-400' : 'text-gray-500'}
           `} />
         </div>
 
@@ -43,9 +44,13 @@ const SearchBar = ({ onSearch, loading }) => {
           onChange={handleInputChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder="🔍 Enter city name (e.g., London, New York, Bratislava)..."
+          placeholder="🔍 Enter city name..."
           disabled={loading}
-          className="w-full pl-16 pr-6 py-5 bg-white text-gray-800 text-lg placeholder-gray-600 focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-2xl font-medium shadow-inner"
+          className={`w-full pl-16 pr-6 py-5 text-lg focus:outline-none disabled:cursor-not-allowed transition-all duration-300 rounded-2xl font-medium shadow-inner ${
+            isDarkMode 
+              ? 'bg-gray-800 text-gray-100 placeholder-gray-400' 
+              : 'bg-white text-gray-800 placeholder-gray-600'
+          }`}
         />
 
         {/* Loading Spinner */}

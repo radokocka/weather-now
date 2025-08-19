@@ -1,35 +1,9 @@
 import { useTheme } from '../context/ThemeContext'
 
-const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
+const ForecastSection = ({ forecast, temperatureUnit = 'C', onDayClick, selectedDay }) => {
   const { isDarkMode } = useTheme()
   
   if (!forecast || !forecast.list) return null
-
-  // Group forecast data by days (take first entry for each day)
-  const getDailyForecast = () => {
-    const dailyData = []
-    const processedDates = new Set()
-    
-    forecast.list.forEach(item => {
-      const date = new Date(item.dt * 1000)
-      const dateKey = date.toDateString()
-      
-      if (!processedDates.has(dateKey) && dailyData.length < 5) {
-        dailyData.push({
-          date: date,
-          temp_min: item.main.temp_min,
-          temp_max: item.main.temp_max,
-          weather: item.weather[0],
-          icon: item.weather[0].icon
-        })
-        processedDates.add(dateKey)
-      }
-    })
-    
-    return dailyData
-  }
-
-  const dailyForecast = getDailyForecast()
 
   const getDayName = (date) => {
     const today = new Date()
@@ -60,6 +34,34 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
     return iconMap[iconCode] || '🌤️'
   }
 
+  // Group forecast data by days (take first entry for each day)
+  const getDailyForecast = () => {
+    const dailyData = []
+    const processedDates = new Set()
+    
+    forecast.list.forEach(item => {
+      const date = new Date(item.dt * 1000)
+      const dateKey = date.toDateString()
+      
+      if (!processedDates.has(dateKey) && dailyData.length < 7) {
+        dailyData.push({
+          date: date,
+          temp_min: item.main.temp_min,
+          temp_max: item.main.temp_max,
+          weather: item.weather[0],
+          icon: item.weather[0].icon,
+          dayName: getDayName(date),
+          weatherEmoji: getWeatherIcon(item.weather[0].icon)
+        })
+        processedDates.add(dateKey)
+      }
+    })
+    
+    return dailyData
+  }
+
+  const dailyForecast = getDailyForecast()
+
   const convertTemp = (temp, unit) => {
     if (unit === 'F') {
       return Math.round((temp * 9/5) + 32)
@@ -70,7 +72,7 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
   return (
     <div>
       <h3 className="text-lg font-bold mb-4 text-gray-900">
-        5-Day Forecast
+        7-Day Forecast
       </h3>
       
       {/* Horizontal Scrollable Container */}
@@ -79,7 +81,12 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
           {dailyForecast.map((day, index) => (
             <div 
               key={index}
-              className="flex-shrink-0 w-20 p-3 text-center rounded-xl bg-gray-50 border border-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-md shadow-sm"
+              onClick={() => onDayClick && onDayClick(day)}
+              className={`flex-shrink-0 w-20 p-3 text-center rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-md shadow-sm cursor-pointer ${
+                selectedDay && selectedDay.date.toDateString() === day.date.toDateString()
+                  ? 'bg-blue-100 border-blue-300 border-2'
+                  : 'bg-gray-50 border border-gray-100'
+              }`}
             >
               {/* Day Name */}
               <div className="text-sm font-semibold mb-2 text-gray-800">
@@ -87,8 +94,12 @@ const ForecastSection = ({ forecast, temperatureUnit = 'C' }) => {
               </div>
               
               {/* Weather Icon */}
-              <div className="text-2xl mb-2">
-                {getWeatherIcon(day.icon)}
+              <div className="mb-2 flex justify-center">
+                <img 
+                  src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
+                  alt={day.weather.description}
+                  className="w-8 h-8 drop-shadow-sm"
+                />
               </div>
               
               {/* Min/Max Temperature */}

@@ -35,7 +35,7 @@ const weatherService = {
     }
   },
 
-  async getFiveDayForecast(city) {
+  async getSevenDayForecast(city) {
     try {
       const response = await axios.get(`${BASE_URL}/forecast`, {
         params: {
@@ -50,7 +50,7 @@ const weatherService = {
     }
   },
 
-  async getFiveDayForecastByCoords(lat, lon) {
+  async getSevenDayForecastByCoords(lat, lon) {
     try {
       const response = await axios.get(`${BASE_URL}/forecast`, {
         params: {
@@ -94,7 +94,7 @@ const weatherService = {
       dailyForecasts[date].forecasts.push(item);
     });
     
-    return Object.values(dailyForecasts).slice(0, 5);
+    return Object.values(dailyForecasts).slice(0, 7);
   }
 };
 

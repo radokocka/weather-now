@@ -26,15 +26,28 @@ function WeatherApp() {
     const condition = weatherData.weather?.[0]?.main?.toLowerCase()
     const description = weatherData.weather?.[0]?.description?.toLowerCase()
     const isNight = weatherData.weather?.[0]?.icon?.includes('n')
+    
+    // Get current time to determine if it's sunset/sunrise
+    const currentTime = new Date()
+    const currentHour = currentTime.getHours()
+    const isSunsetSunrise = (currentHour >= 17 && currentHour <= 19) || (currentHour >= 5 && currentHour <= 7)
 
     if (condition === 'clear') {
-      return isNight ? 'clear-night-bg' : 'sunny-bg'
+      if (isNight) {
+        return 'clear-night-bg'
+      } else if (isSunsetSunrise) {
+        return 'sunset-bg'
+      } else {
+        return 'sunny-bg'
+      }
     } else if (condition === 'clouds') {
-      return 'cloudy-bg'
+      return isNight ? 'cloudy-night-bg' : 'cloudy-bg'
     } else if (condition === 'rain' || condition === 'drizzle' || condition === 'thunderstorm') {
-      return 'rainy-bg'
+      return isNight ? 'rainy-night-bg' : 'rainy-bg'
     } else if (condition === 'snow') {
-      return 'snow-bg'
+      return isNight ? 'snow-night-bg' : 'snow-bg'
+    } else if (condition === 'mist' || condition === 'fog' || condition === 'haze') {
+      return isNight ? 'cloudy-night-bg' : 'cloudy-bg'
     }
     
     return 'animated-gradient-bg'
@@ -58,6 +71,10 @@ function WeatherApp() {
           <div className="sun-ray"></div>
           <div className="sun-ray"></div>
           <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
+          <div className="sun-ray"></div>
         </div>
       )
     } else if (condition === 'clear' && isNight) {
@@ -71,7 +88,7 @@ function WeatherApp() {
     } else if (condition === 'rain' || condition === 'drizzle' || condition === 'thunderstorm') {
       return (
         <div className="rain-container">
-          {[...Array(10)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <div key={i} className="rain-drop"></div>
           ))}
         </div>
@@ -79,7 +96,7 @@ function WeatherApp() {
     } else if (condition === 'snow') {
       return (
         <div className="snow-container">
-          {[...Array(10)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <div key={i} className="snowflake">❄</div>
           ))}
         </div>
@@ -114,13 +131,17 @@ function WeatherApp() {
   }
 
   return (
-    <div className={`min-h-screen weather-bg ${getWeatherBackground()} flex items-center justify-center p-6`}>
+    <div className={`min-h-screen weather-bg ${getWeatherBackground()} flex items-center justify-center p-4 md:p-6 ${isDarkMode ? 'dark' : ''}`}>
       
       {/* Weather Effects */}
       {getWeatherEffects()}
       
-      {/* Animated Clouds - only show for cloudy/default weather */}
-      {(!weatherData || weatherData.weather?.[0]?.main?.toLowerCase() === 'clouds' || !weatherData.weather) && (
+      {/* Animated Clouds - only show for cloudy/default weather or when no weather data */}
+      {(!weatherData || 
+        weatherData.weather?.[0]?.main?.toLowerCase() === 'clouds' || 
+        weatherData.weather?.[0]?.main?.toLowerCase() === 'mist' ||
+        weatherData.weather?.[0]?.main?.toLowerCase() === 'fog' ||
+        !weatherData.weather) && (
         <>
           <div className="cloud cloud-1"></div>
           <div className="cloud cloud-2"></div>
@@ -138,22 +159,31 @@ function WeatherApp() {
       <TemperatureToggle onUnitChange={setTemperatureUnit} />
       
       {/* Main Welcome Card */}
-      <div className="w-full max-w-lg mx-auto">
-        <div className="bg-white backdrop-blur-xl rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-16 border border-white/20">
+      <div className="w-full max-w-2xl mx-auto px-4">
+        <div className={`${isDarkMode ? 'bg-gray-900 text-white border-gray-700' : 'bg-white text-gray-900 border-white/20'} backdrop-blur-xl rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-8 md:p-12 lg:p-16 border`}>
           
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-3">
+            <h1 
+              className={`text-4xl font-bold mb-3 cursor-pointer transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
+              onClick={() => {
+                setWeatherData(null)
+                setForecastData(null)
+                setCity('')
+                setError('')
+              }}
+              title="Click to return home"
+            >
               WeatherNow
             </h1>
-            <p className="text-gray-700 text-base">
+            <p className={`text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Beautiful weather insights
             </p>
           </div>
           
           {/* Search Section */}
           <div className="mb-6">
-            <SearchBar onSearch={handleSearch} loading={loading} />
+            <SearchBar onSearch={handleSearch} loading={loading} isDarkMode={isDarkMode} />
           </div>
           
           {/* Content Area */}
@@ -176,7 +206,7 @@ function WeatherApp() {
             
             {!weatherData && !loading && !error && (
               <div className="animate-fade-in-up transition-all duration-700 ease-out">
-                <EmptyState onSuggestionClick={handleSearch} />
+                <EmptyState onSuggestionClick={handleSearch} isDarkMode={isDarkMode} />
               </div>
             )}
             
@@ -186,6 +216,7 @@ function WeatherApp() {
                   weather={weatherData} 
                   forecast={forecastData}
                   temperatureUnit={temperatureUnit}
+                  isDarkMode={isDarkMode}
                 />
               </div>
             )}
