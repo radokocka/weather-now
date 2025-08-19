@@ -69,3 +69,13 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Force center alignment for mobile headers */
+@media (max-width: 640px) {
+  h1 {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }
+}

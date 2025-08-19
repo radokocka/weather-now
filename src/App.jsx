@@ -131,7 +131,7 @@ function WeatherApp() {
   }
 
   return (
-    <div className={`min-h-screen weather-bg ${getWeatherBackground()} flex items-start justify-center p-2 sm:p-4 lg:p-6 pt-4 sm:pt-8 lg:items-center ${isDarkMode ? 'dark' : ''}`}>
+    <div className={`min-h-screen weather-bg ${getWeatherBackground()} flex items-start justify-center p-2 sm:p-4 lg:p-6 pt-4 sm:pt-8 lg:items-center ${isDarkMode ? 'dark' : ''}`} style={{position: 'relative', overflow: 'hidden'}}>
       
       {/* Weather Effects */}
       {getWeatherEffects()}
@@ -159,13 +159,14 @@ function WeatherApp() {
       <TemperatureToggle onUnitChange={setTemperatureUnit} />
       
       {/* Main Welcome Card */}
-      <div className="w-full max-w-md sm:max-w-lg lg:max-w-2xl mx-auto px-2 sm:px-3 lg:px-4">
-        <div className={`${isDarkMode ? 'bg-gray-900/95 text-white border-gray-700' : 'bg-white/95 text-gray-900 border-white/30'} backdrop-blur-xl rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] sm:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-3 sm:p-4 md:p-6 lg:p-8 border`}>
+      <div className="w-full max-w-md sm:max-w-lg lg:max-w-2xl mx-auto" style={{paddingLeft: '8px', paddingRight: '8px'}}>
+        <div className={`${isDarkMode ? 'bg-gray-900/95 text-white border-gray-700' : 'bg-white/95 text-gray-900 border-white/30'} backdrop-blur-xl rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] sm:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-3 sm:p-4 md:p-6 lg:p-8 border`} style={{margin: '0 auto', textAlign: 'center'}}>
           
           {/* Header */}
-          <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+          <div className="mb-4 sm:mb-6 lg:mb-8" style={{textAlign: 'center', width: '100%'}}>
             <h1 
-              className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2 lg:mb-3 cursor-pointer transition-all duration-300 hover:scale-105 text-center ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
+              className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2 lg:mb-3 cursor-pointer transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
+              style={{textAlign: 'center', margin: '0 auto', display: 'block', width: '100%'}}
               onClick={() => {
                 setWeatherData(null)
                 setForecastData(null)
