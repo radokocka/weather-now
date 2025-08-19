@@ -159,13 +159,13 @@ function WeatherApp() {
       <TemperatureToggle onUnitChange={setTemperatureUnit} />
       
       {/* Main Welcome Card */}
-      <div className="w-full max-w-md sm:max-w-lg lg:max-w-2xl mx-auto px-1 sm:px-2 lg:px-4">
+      <div className="w-full max-w-md sm:max-w-lg lg:max-w-2xl mx-auto px-2 sm:px-3 lg:px-4">
         <div className={`${isDarkMode ? 'bg-gray-900/95 text-white border-gray-700' : 'bg-white/95 text-gray-900 border-white/30'} backdrop-blur-xl rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] sm:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.4)] p-3 sm:p-4 md:p-6 lg:p-8 border`}>
           
           {/* Header */}
           <div className="text-center mb-4 sm:mb-6 lg:mb-8">
             <h1 
-              className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2 lg:mb-3 cursor-pointer transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
+              className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2 lg:mb-3 cursor-pointer transition-all duration-300 hover:scale-105 text-center ${isDarkMode ? 'text-white hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
               onClick={() => {
                 setWeatherData(null)
                 setForecastData(null)
